@@ -2,6 +2,7 @@ package me.yokeyword.swipebackfragment.sample;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import me.yokeyword.swipebackfragment.SwipeBackActivity;
@@ -13,7 +14,8 @@ public class MainActivity extends SwipeBackActivity implements BaseSwipeBackFrag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        setTitle("activity-");
         // 给其下Fragment的默认背景 (默认使用Fragment根布局的background属性,如若没有则使用Theme的windowBackground属性)
         setDefaultFragmentBackground(android.R.color.white);
 
@@ -47,7 +49,7 @@ public class MainActivity extends SwipeBackActivity implements BaseSwipeBackFrag
     private void addFragment(Fragment fromFragment, Fragment toFragment) {
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.h_fragment_enter, R.anim.h_fragment_exit, R.anim.h_fragment_pop_enter, R.anim.h_fragment_pop_exit)
-                .add(R.id.fl_container, toFragment, toFragment.getClass().getSimpleName())
+                .replace(R.id.fl_container, toFragment, toFragment.getClass().getSimpleName())
                 .hide(fromFragment)
                 .addToBackStack(toFragment.getClass().getSimpleName())
                 .commit();
@@ -55,7 +57,7 @@ public class MainActivity extends SwipeBackActivity implements BaseSwipeBackFrag
 
     private void loadFragment(Fragment toFragment) {
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fl_container, toFragment, toFragment.getClass().getSimpleName())
+                .replace(R.id.fl_container, toFragment, toFragment.getClass().getSimpleName())
                 .addToBackStack(toFragment.getClass().getSimpleName())
                 .commit();
     }

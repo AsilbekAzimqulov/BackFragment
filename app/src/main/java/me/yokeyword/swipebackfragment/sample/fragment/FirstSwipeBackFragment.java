@@ -32,9 +32,6 @@ public class FirstSwipeBackFragment extends BaseSwipeBackFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_swipe_back_first, container, false);
 
-        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        mToolbar.setTitle("SwipeBackActivity的Fragment");
-        _initToolbar(mToolbar);
 
         view.findViewById(R.id.tv_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,5 +45,9 @@ public class FirstSwipeBackFragment extends BaseSwipeBackFragment {
         return attachToSwipeBack(view);
     }
 
-
+    @Override
+    public void onResume() {
+getActivity().setTitle("1-");
+        super.onResume();
+    }
 }

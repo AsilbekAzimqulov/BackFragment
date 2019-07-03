@@ -38,21 +38,17 @@ public class ThirdSwipeBackFragment extends BaseSwipeBackFragment {
         View view = inflater.inflate(R.layout.fragment_swipe_back_third, container, false);
 
         initToolbar(view);
-        view.findViewById(R.id.tv_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mAddFragmentListener != null) {
-                    mAddFragmentListener.onAddFragment(ThirdSwipeBackFragment.this, RecyclerSwipeBackFragment.newInstance());
-                }
-            }
-        });
 
         return attachToSwipeBack(view);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("3-");
+    }
+
     private void initToolbar(View view) {
-        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        _initToolbar(mToolbar);
 
         Button btnSet = (Button) view.findViewById(R.id.btn_set);
         btnSet.setOnClickListener(new View.OnClickListener() {

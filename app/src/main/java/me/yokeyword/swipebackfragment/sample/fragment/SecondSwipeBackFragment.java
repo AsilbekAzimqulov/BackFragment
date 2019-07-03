@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,7 +37,6 @@ public class SecondSwipeBackFragment extends BaseSwipeBackFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_swipe_back_second, container, false);
-
         initToolbar(view);
 
         view.findViewById(R.id.tv_btn).setOnClickListener(new View.OnClickListener() {
@@ -51,22 +51,30 @@ public class SecondSwipeBackFragment extends BaseSwipeBackFragment {
         getSwipeBackLayout().addSwipeListener(new SwipeBackLayout.OnSwipeListener() {
             @Override
             public void onDragStateChange(int state) {
+                Log.d("MRX", "s=" + state);
             }
 
             @Override
             public void onEdgeTouch(int edgeFlag) {
+                Log.d("MRX", "sf=" + edgeFlag);
             }
 
             @Override
             public void onDragScrolled(float scrollPercent) {
+                Log.d("MRX", "sp=" + scrollPercent);
             }
         });
         return attachToSwipeBack(view);
     }
 
+    @Override
+    public void onResume() {
+        getActivity().setTitle("2-");
+        super.onResume();
+    }
+
     private void initToolbar(View view) {
-        mToolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        _initToolbar(mToolbar);
+
 
         Button btnSet = (Button) view.findViewById(R.id.btn_set);
         btnSet.setOnClickListener(new View.OnClickListener() {
